@@ -44,7 +44,14 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="left" />
+          <div className="left">
+            <h2>Be the first to know</h2>
+            <div>
+              <div>
+                Get all the latest events and promotions directly to your email
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
