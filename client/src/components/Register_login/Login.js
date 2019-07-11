@@ -45,7 +45,7 @@ class Login extends Component {
     console.log("form submitted");
   };
 
-  updateForm = () => {
+  updateForm = element => {
     const newFormData = update(element, this.state.formdata, "login");
     this.setState({
       formError: false,
@@ -59,12 +59,12 @@ class Login extends Component {
           <FormField
             id={"email"}
             formdata={this.state.formdata.email}
-            change={element => this.updateForm()}
+            change={element => this.updateForm(element)}
           />
           <FormField
             id={"password"}
             formdata={this.state.formdata.password}
-            change={element => this.updateForm()}
+            change={element => this.updateForm(element)}
           />
         </form>
       </div>
