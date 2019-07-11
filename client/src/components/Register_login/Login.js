@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import FormField from "../utils/Forms/formField";
-import { update } from "../utils/Forms/formActions";
+import { update, generateData, isFormValid } from "../utils/Forms/formActions";
 class Login extends Component {
   state = {
     formError: false,
@@ -41,8 +41,19 @@ class Login extends Component {
     }
   };
 
-  submitForm = () => {
-    console.log("form submitted");
+  submitForm = event => {
+    event.preventDefault();
+
+    let dataToSubmit = generateData(this.state.formdata, "login");
+    let formIsValid = isFormValid(this.state.formdata, "login");
+
+    if (formIsValid) {
+      console.log(dataToSubmit);
+    } else {
+      this.setState({
+        formError: true
+      });
+    }
   };
 
   updateForm = element => {
@@ -66,6 +77,10 @@ class Login extends Component {
             formdata={this.state.formdata.password}
             change={element => this.updateForm(element)}
           />
+          {this.state.formError ? (
+            <div className="error_label">Please check your data</div>
+          ) : null}
+          <button onClick={event => this.submitForm(event)}>Login</button>
         </form>
       </div>
     );
